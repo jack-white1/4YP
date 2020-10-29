@@ -35,7 +35,7 @@ int main() {
 	double *dx, *dy, *d_dx, *d_dy;
 	float *sx, *sy, *d_sx, *d_sy;
 	half *hx, *hy, *d_hx, *d_hy;
-	bfloat16 *bx, *by, *d_bx, *d_by;
+	nv_bfloat16 *bx, *by, *d_bx, *d_by;
 
 	cudaEvent_t dstart, dstop, sstart, sstop, hstart, hstop, bstart, bstop;
 	cudaEvent_t dMemCpyH2DStart, dMemCpyH2DStop, sMemCpyH2DStart, sMemCpyH2DStop, hMemCpyH2DStart, hMemCpyH2DStop, bMemCpyH2DStart, bMemCpyH2DStop;
@@ -78,8 +78,8 @@ int main() {
 	sy = (float*)malloc(N*sizeof(float));
 	hx = (half*)malloc(N*sizeof(half));
 	hy = (half*)malloc(N*sizeof(half));
-	bx = (bfloat16*)malloc(N*sizeof(bfloat16));
-	by = (bfloat16*)malloc(N*sizeof(bfloat16));
+	bx = (nv_bfloat16*)malloc(N*sizeof(nv_bfloat16));
+	by = (nv_bfloat16*)malloc(N*sizeof(nv_bfloat16));
 	
 	cudaMalloc(&d_dx, N*sizeof(double));
 	cudaMalloc(&d_dy, N*sizeof(double));
@@ -87,8 +87,8 @@ int main() {
 	cudaMalloc(&d_sy, N*sizeof(float));
 	cudaMalloc(&d_hx, N*sizeof(half));
 	cudaMalloc(&d_hy, N*sizeof(half));
-	cudaMalloc(&d_bx, N*sizeof(bfloat16));
-	cudaMalloc(&d_by, N*sizeof(bfloat16));
+	cudaMalloc(&d_bx, N*sizeof(nv_bfloat16));
+	cudaMalloc(&d_by, N*sizeof(nv_bfloat16));
 
 	
 	srand (static_cast <unsigned> (time(0)));
@@ -121,8 +121,8 @@ int main() {
 	cudaEventRecord(hMemCpyH2DStop);
 
 	cudaEventRecord(bMemCpyH2DStart);
-	cudaMemcpy(d_bx, bx, N*sizeof(bfloat16), cudaMemcpyHostToDevice);
-	cudaMemcpy(d_by, by, N*sizeof(bfloat16), cudaMemcpyHostToDevice);
+	cudaMemcpy(d_bx, bx, N*sizeof(nv_bfloat16), cudaMemcpyHostToDevice);
+	cudaMemcpy(d_by, by, N*sizeof(nv_bfloat16), cudaMemcpyHostToDevice);
 	cudaEventRecord(hMemCpyH2DStop);
 
 	int numThreadBlocks = (N+threadsPerBlock-1)/threadsPerBlock;
@@ -156,7 +156,7 @@ int main() {
 	cudaEventRecord(hMemCpyD2HStop);
 
 	cudaEventRecord(bMemCpyD2HStart);
-	cudaMemcpy(by, d_by, N*sizeof(bfloat16), cudaMemcpyDeviceToHost);
+	cudaMemcpy(by, d_by, N*sizeof(nv_bfloat16), cudaMemcpyDeviceToHost);
 	cudaEventRecord(bMemCpyD2HStop);
 
 	double dmaxError = 0;
