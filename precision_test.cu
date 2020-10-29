@@ -123,7 +123,7 @@ int main() {
 	cudaEventRecord(bMemCpyH2DStart);
 	cudaMemcpy(d_bx, bx, N*sizeof(nv_bfloat16), cudaMemcpyHostToDevice);
 	cudaMemcpy(d_by, by, N*sizeof(nv_bfloat16), cudaMemcpyHostToDevice);
-	cudaEventRecord(hMemCpyH2DStop);
+	cudaEventRecord(bMemCpyH2DStop);
 
 	int numThreadBlocks = (N+threadsPerBlock-1)/threadsPerBlock;
 	cudaEventRecord(dstart);
