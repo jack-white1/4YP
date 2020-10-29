@@ -224,6 +224,7 @@ int main() {
 
 	printf("-------------------------------------------------------------------------\n");
 	printf("  Random Number A*X+Y on %d elements\n\n", N);
+	printf("  X,Y are in range 0->1 and A = 2 so this test will favour FP16 over BF16\n  in terms of accuracy due to dynamic range\n\n", N);
 	printf("  %s\n",prop.name);
 	printf("-------------------------------------------------------------------------\n");
 	printf("|        | max error | avg error |  compute  | memcpy time | memcpy time |\n");
