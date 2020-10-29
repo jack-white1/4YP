@@ -22,7 +22,7 @@ __global__ void axpy(int n, half a, half* x, half* y){
 	if (i < n){y[i] = __hadd(b,y[i]);}
 }
 
-__global__ void axpy(int n, bfloat16 a, bfloat16* x, bfloat16* y){
+__global__ void axpy(int n, nv_bfloat16 a, nv_bfloat16* x, nv_bfloat16* y){
 	int i = blockIdx.x*blockDim.x + threadIdx.x;
 	half b = __hmul(a,x[i]);
 	if (i < n){y[i] = __hadd(b,y[i]);}
