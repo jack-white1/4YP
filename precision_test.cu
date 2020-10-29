@@ -173,7 +173,7 @@ int main() {
 		double dError = abs(dy[i]-dy[i]);
 		double sError = abs((static_cast <double> (sy[i]))-dy[i]);
 		double hError = abs(static_cast <double> (__half2float(hy[i])) - dy[i]);
-		double hError = abs(static_cast <double> (__bfloat162float(hy[i])) - dy[i]);
+		double bError = abs(static_cast <double> (__bfloat162float(by[i])) - dy[i]);
 		dmaxError = max(dmaxError, dError);
 		smaxError = max(smaxError, sError);
 		hmaxError = max(hmaxError, hError);
