@@ -1,2 +1,2 @@
-# 4YP
-My 4th year research project at the University of Oxford
+# AXPY
+Standard cuda sample to ensure installation is functioning correctly, modified slightly from https://developer.nvidia.com/blog/even-easier-introduction-cuda/
